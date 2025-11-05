@@ -9,7 +9,14 @@ Run:
   scripts/run_all.sh
 
 Dependencies:
-  sudo apt install build-essential cmake libmysqlclient-dev mysql-server
+  sudo apt update
+  sudo apt install -y \
+    build-essential \
+    cmake \
+    libmysqlclient-dev \
+    mysql-server \
+    libssl-dev \
+    nlohmann-json3-dev
 
 Workloads supported:
   put_all       → DB write-heavy (disk-bound)
