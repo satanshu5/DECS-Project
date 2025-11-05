@@ -16,7 +16,8 @@ Dependencies:
     libmysqlclient-dev \
     mysql-server \
     libssl-dev \
-    nlohmann-json3-dev
+    nlohmann-json3-dev \
+    libboost-all-dev
 
 
 
