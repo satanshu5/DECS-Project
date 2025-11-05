@@ -47,6 +47,6 @@ target_link_libraries(kv_server
     Threads::Threads
 )
 
-message(STATUS "✅ Build configured successfully.")
+message(STATUS "Build configured successfully.")
 message(STATUS "  Boost include: ${Boost_INCLUDE_DIRS}")
 message(STATUS "  Boost libs: ${Boost_LIBRARIES}")
