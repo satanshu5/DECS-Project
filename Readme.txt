@@ -18,10 +18,7 @@ Dependencies:
     libssl-dev \
     nlohmann-json3-dev
 
-Workloads supported:
-  put_all       → DB write-heavy (disk-bound)
-  get_all_unique→ DB read-heavy (disk-bound)
-  get_popular   → Cache-heavy (CPU-bound)
+
 
 Put req : curl -X POST http://127.0.0.1:8080/kv -H "Content-Type: application/json" -d '{"k":1,"v":"hello"}'
 
