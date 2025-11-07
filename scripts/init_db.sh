@@ -29,12 +29,4 @@ CREATE TABLE IF NOT EXISTS kv_table (
 );
 SQL
 
-echo "Database and user setup complete!"
-echo "Database: ${DB_NAME}"
-echo "User: ${DB_USER}"
-echo "Password: ${DB_PASS}"
-echo
-echo "Next steps:"
-echo "  export KV_DB_USER=${DB_USER}"
-echo "  export KV_DB_PASS=${DB_PASS}"
 
