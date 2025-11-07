@@ -37,5 +37,4 @@ echo
 echo "Next steps:"
 echo "  export KV_DB_USER=${DB_USER}"
 echo "  export KV_DB_PASS=${DB_PASS}"
-echo "Then run your server:"
-echo "  ./build/kv_server 8080 8 10000"
+
