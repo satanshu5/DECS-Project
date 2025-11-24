@@ -12,6 +12,6 @@ plt.xlabel("Threads")
 plt.ylabel("CPU Utilization (%)")
 plt.title("Threads vs CPU Utilization (getpopular workload)")
 plt.grid(True)
-plt.xscale("log", basex=2)   # optional
+# plt.xscale("log", basex=2)   # optional
 
 plt.show()

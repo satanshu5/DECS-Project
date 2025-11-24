@@ -13,6 +13,6 @@ plt.xlabel("Threads")
 plt.ylabel("Throughput (req/s)")
 plt.title("Threads vs Throughput (getpopular workload)")
 plt.grid(True)
-plt.xscale("log", basex=2)   # optional: makes thread scaling clearer
+# plt.xscale("log", basex=2)   # optional: makes thread scaling clearer
 
 plt.show()

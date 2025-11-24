@@ -8,72 +8,67 @@
 #include <string>
 #include <mutex>
 
-std::atomic<long long> total_requests{0};
-std::atomic<long long> total_latency_us{0};
+using namespace std;
+atomic<long long> total_requests{0};
+atomic<long long> total_latency_us{0};
 
-std::mutex cout_mutex;
+mutex cout_mutex;
 
-long long randomKey(int tid) {
+long long randomKey(int th_id) {
     static thread_local long long counter = 0;
-    return tid * 1000000LL + counter++;
+    return th_id * 1000000LL + counter++;
 }
 
 
-void postKV(httplib::Client& cli, int tid) {
-    long long key = randomKey(tid);
-    std::string value = "val_" + std::to_string(rand() % 1000);
+void postKV(httplib::Client& cli, int th_id) {
+    long long key = randomKey(th_id);
+    string value = "val_" + to_string(rand() % 1000);
 
-    std::string json = "{\"k\":" + std::to_string(key) +
-                       ",\"v\":\"" + value + "\"}";
+    string json = "{\"k\":" + to_string(key) + ",\"v\":\"" + value + "\"}";
 
     cli.Post("/kv", json, "application/json");
 }
 
-void getKV(httplib::Client& cli, int tid) {
-    long long key = randomKey(tid);
-    cli.Get(("/kv?k=" + std::to_string(key)).c_str());
+void getKV(httplib::Client& cli, int th_id) {
+    long long key = randomKey(th_id);
+    cli.Get(("/kv?k=" + to_string(key)).c_str());
 }
 
 void getPopularKV(httplib::Client& cli) {
-    static const std::vector<long long> hotKeys = {1, 2, 3, 4, 5};
+    static const vector<long long> hotKeys = {1, 2, 3, 4, 5};
     long long key = hotKeys[rand() % hotKeys.size()];
-    cli.Get(("/kv?k=" + std::to_string(key)).c_str());
+    cli.Get(("/kv?k=" + to_string(key)).c_str());
 }
 
 // ----------------------------------------------------------------------
 
-void clientThread(int tid, int duration, const std::string& workload) {
+void clientThread(int th_id, int duration, const string& workload) {
     httplib::Client cli("127.0.0.1", 8080);
     cli.set_connection_timeout(5, 0);
     cli.set_read_timeout(5, 0);
     cli.set_write_timeout(5, 0);
 
-    auto start = std::chrono::steady_clock::now();
+    auto start = chrono::steady_clock::now();
 
-    while (std::chrono::steady_clock::now() - start < std::chrono::seconds(duration)) {
-        auto req_start = std::chrono::steady_clock::now();
+    while (chrono::steady_clock::now() - start < chrono::seconds(duration)) {
+        auto req_start = chrono::steady_clock::now();
 
         try {
             if (workload == "putall") {
-                postKV(cli, tid);
+                postKV(cli, th_id);
             } else if (workload == "getall") {
-                getKV(cli, tid);
+                getKV(cli, th_id);
             } else if (workload == "getpopular") {
                 getPopularKV(cli);
-            } else {
-                int r = rand() % 3;
-                if (r == 0) postKV(cli, tid);
-                else if (r == 1) getKV(cli, tid);
-                else getPopularKV(cli);
             }
         } catch (...) {
-            std::lock_guard<std::mutex> lock(cout_mutex);
-            std::cerr << "Thread " << tid << " request failed\n";
+            lock_guard<mutex> lock(cout_mutex);
+            cerr << "Thread " << th_id << " request failed\n";
         }
 
-        auto req_end = std::chrono::steady_clock::now();
+        auto req_end = chrono::steady_clock::now();
         long long latency =
-            std::chrono::duration_cast<std::chrono::microseconds>(req_end - req_start).count();
+            chrono::duration_cast<chrono::microseconds>(req_end - req_start).count();
 
         total_requests++;
         total_latency_us += latency;
@@ -83,17 +78,13 @@ void clientThread(int tid, int duration, const std::string& workload) {
 // ----------------------------------------------------------------------
 
 int main(int argc, char* argv[]) {
-    if (argc < 7) {
-        std::cerr << "Usage: " << argv[0]
-                  << " --workload [putall|getall|getpopular|mixed] --threads N --duration S\n";
-        return 1;
-    }
 
-    std::string workload = argv[2];
-    int threads = std::stoi(argv[4]);
-    int duration = std::stoi(argv[6]);
 
-    std::vector<std::thread> pool;
+    string workload = argv[2];
+    int threads = stoi(argv[4]);
+    int duration = stoi(argv[6]);
+
+    vector<thread> pool;
     for (int i = 0; i < threads; i++) {
         pool.emplace_back(clientThread, i, duration, workload);
     }
@@ -103,12 +94,12 @@ int main(int argc, char* argv[]) {
     double avg_latency_ms = 
         (total_latency_us.load() / (double)total_requests.load()) / 1000.0;
 
-    std::cout << "Workload: " << workload << "\n";
-    std::cout << "Total Reqs: " << total_requests.load() << "\n";
-    std::cout << "Threads: " << threads << "\n";
-    std::cout << "Duration: " << duration << "s\n";
-    std::cout << "Throughput: " << throughput << " req/s\n";
-    std::cout << "Average Latency: " << avg_latency_ms << " ms\n";
+    cout << "Workload: " << workload << "\n";
+    cout << "Total Reqs: " << total_requests.load() << "\n";
+    cout << "Threads: " << threads << "\n";
+    cout << "Duration: " << duration << "s\n";
+    cout << "Throughput: " << throughput << " req/s\n";
+    cout << "Mean Latency: " << avg_latency_ms << " ms\n";
 
     return 0;
 }
