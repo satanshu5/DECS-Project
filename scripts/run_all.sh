@@ -10,7 +10,7 @@ DB_USER="kvuser"
 DB_PASS="kvpass"
 PORT=8080
 WORKERS=8
-CACHE_SIZE=10000
+CACHE_SIZE=1000
 
 # ---------------------------------------------------------------------------
 # Start MySQL

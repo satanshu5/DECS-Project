@@ -30,7 +30,7 @@ public:
 
     void init(const string &host, const string &user,
               const string &pass, const string &db,
-              size_t poolSize = 10)
+              size_t poolSize = 16)
     {
         lock_guard<mutex> lock(mu);
         if (!connections.empty())

@@ -1,0 +1,72 @@
+Workload: putall
+Total Reqs: 47005
+Threads: 1
+Duration: 300s
+Throughput: 156.683 req/s
+Average Latency: 6.38161 ms
+cpu avg : 65
+
+Workload: putall
+Total Reqs: 78751
+Threads: 2
+Duration: 300s
+Throughput: 262.503 req/s
+Average Latency: 7.61832 ms
+cpu avg : 83-86
+
+Workload: putall
+Total Reqs: 149221
+Threads: 4
+Duration: 300s
+Throughput: 497.403 req/s
+Average Latency: 8.0411 ms
+cpu avg : 86-90
+
+Workload: putall
+Total Reqs: 197918
+Threads: 6
+Duration: 300s
+Throughput: 659.727 req/s
+Average Latency: 9.09415 ms
+cpu avg : 86-90
+
+Workload: putall
+Total Reqs: 232090
+Threads: 8
+Duration: 300s
+Throughput: 773.633 req/s
+Average Latency: 10.3403 ms
+cpu avg : 86-90
+
+Workload: putall
+Total Reqs: 241961
+Threads: 12
+Duration: 300s
+Throughput: 806.537 req/s
+Average Latency: 14.878 ms
+cpu avg : 89-91
+
+Workload: putall
+Total Reqs: 247995
+Threads: 16
+Duration: 300s
+Throughput: 826.65 req/s
+Average Latency: 19.355 ms
+cpu avg : 89-91
+
+Workload: putall
+Total Reqs: 240790
+Threads: 32
+Duration: 300s
+Throughput: 802.633 req/s
+Average Latency: 39.8723 ms
+cpu avg : 89-91
+
+
+Workload: putall
+Total Reqs: 196449
+Threads: 64
+Duration: 300s
+Throughput: 654.83 req/s
+Average Latency: 97.7653 ms
+cpu avg : 89-91

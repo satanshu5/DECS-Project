@@ -1,0 +1,90 @@
+Workload: getpopular
+Total Reqs: 837831
+Threads: 1
+Duration: 300s
+Throughput: 2792.77 req/s
+Average Latency: 0.357461 ms
+cpu avg : 50-51
+
+Workload: getpopular
+Total Reqs: 1442471
+Threads: 2
+Duration: 300s
+Throughput: 4808.24 req/s
+Average Latency: 0.415341 ms
+CPU : 60-65
+
+
+
+
+Workload: getpopular
+Total Reqs: 1825708
+Threads: 4
+Duration: 300s
+Throughput: 6085.69 req/s
+Average Latency: 0.656642 ms
+cpu : 80-85 avg
+
+
+Workload: getpopular
+Total Reqs: 2004475
+Threads: 6
+Duration: 300s
+Throughput: 6681.58 req/s
+Average Latency: 0.897353 ms
+CPU avg : 89-90
+
+Workload: getpopular
+Total Reqs: 1859260
+Threads: 8
+Duration: 300s
+Throughput: 6197.53 req/s
+Average Latency: 1.29081 ms
+cpu avg : 89-90
+
+
+
+Workload: getpopular
+Total Reqs: 1899407
+Threads: 10
+Duration: 300s
+Throughput: 6331.36 req/s
+Average Latency: 1.58019 ms
+cpu avg : 89-90
+
+
+Workload: getpopular
+Total Reqs: 1872126
+Threads: 16
+Duration: 300s
+Throughput: 6240.42 req/s
+Average Latency: 2.56642 ms
+cpu avg : 89-90
+
+
+Workload: getpopular
+Total Reqs: 1933685
+Threads: 32
+Duration: 300s
+Throughput: 6445.62 req/s
+Average Latency: 4.97204 ms
+cpu : 89-90
+
+
+Workload: getpopular
+Total Reqs: 1935156
+Threads: 64
+Duration: 300s
+Throughput: 6450.52 req/s
+Average Latency: 9.93319 ms
+cpu avg : 89-90
+
+
+
+Workload: getpopular
+Total Reqs: 1931863
+Threads: 128
+Duration: 300s
+Throughput: 6439.54 req/s
+Average Latency: 19.9087 ms
+cpu avg : 89-90
